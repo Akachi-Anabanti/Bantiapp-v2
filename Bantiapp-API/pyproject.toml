@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "bantiapp-api"
+version = "0.1.0"
+description = "API endpoints for the Banti Social application"
+authors = ["Akachi Anabanti <akachi.anabanti@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+quart = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
