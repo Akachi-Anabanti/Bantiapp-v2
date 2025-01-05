@@ -22,7 +22,7 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
+    name: "akachi",
     email: "m@example.com",
     avatar: "https://avatar.iran.liara.run/public/29",
   },
@@ -79,7 +79,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="sidebar" {...props}>
+    <Sidebar variant="sidebar" collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

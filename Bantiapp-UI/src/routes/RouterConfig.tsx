@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import { AuthGuard } from "./AuthGuard";
-import { MainLayout } from "@/components/layout/MainLaout";
+// import { AuthGuard } from "./AuthGuard";
+import { MainLayout } from "@/components/layout/MainLayout";
 import PageLoader from "@/components/layout/PageLoader";
 
 // Lazy load pages
 const pages = {
   Login: lazy(() => import("@/app/login/page")),
   // Register: lazy(() => import("@/app/register/page")),
-  Home: lazy(() => import("@/app/dashboard/page")),
+  Home: lazy(() => import("@/app/home/center")),
   // Profile: lazy(() => import("@/app/profile/page")),
   // Commented pages kept for future implementation
   // Notifications: lazy(() => import("@/app/notifications/page")),
@@ -29,10 +29,10 @@ const publicRoutes = [
     path: "/login",
     element: withLoader(pages.Login),
   },
-  {
-    path: "/",
-    element: withLoader(pages.Home),
-  },
+  // {
+  //   path: "/",
+  //   element: withLoader(pages.Home),
+  // },
   // {
   //   path: "/register",
   //   element: withLoader(pages.Register),
@@ -41,10 +41,10 @@ const publicRoutes = [
 
 // Protected routes configuration
 const protectedRoutes = [
-  // {
-  //   path: "/",
-  //   element: withLoader(pages.Home),
-  // },
+  {
+    path: "/",
+    element: withLoader(pages.Home),
+  },
   { path: "*" },
   // {
   //   path: "/profile/:username",
@@ -69,9 +69,10 @@ export const router = createBrowserRouter([
   ...publicRoutes,
   {
     element: (
-      <AuthGuard>
-        <MainLayout />
-      </AuthGuard>
+      // <AuthGuard>
+      //   <MainLayout />
+      // </AuthGuard>
+      <MainLayout />
     ),
     children: protectedRoutes,
   },
