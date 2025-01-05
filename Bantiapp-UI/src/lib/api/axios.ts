@@ -1,8 +1,8 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
-import { useAuthStore } from "@stores/authStore";
-import { ApiError, AuthResponse } from "@/types/api";
+import { useAuthStore } from "@/stores/authStore";
+import { AuthResponse } from "@/types/api";
 
-const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api/";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/";
 
 export const publicClient = axios.create({
   baseURL: BASE_URL,
