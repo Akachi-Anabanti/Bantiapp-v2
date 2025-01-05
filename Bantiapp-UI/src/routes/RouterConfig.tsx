@@ -29,6 +29,10 @@ const publicRoutes = [
     path: "/login",
     element: withLoader(pages.Login),
   },
+  {
+    path: "/",
+    element: withLoader(pages.Home),
+  },
   // {
   //   path: "/register",
   //   element: withLoader(pages.Register),
@@ -37,10 +41,11 @@ const publicRoutes = [
 
 // Protected routes configuration
 const protectedRoutes = [
-  {
-    path: "/",
-    element: withLoader(pages.Home),
-  },
+  // {
+  //   path: "/",
+  //   element: withLoader(pages.Home),
+  // },
+  { path: "*" },
   // {
   //   path: "/profile/:username",
   //   element: withLoader(pages.Profile),
