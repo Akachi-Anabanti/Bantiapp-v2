@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
+import { toast } from "@/hooks/use-toast";
 import { ApiErrorHandler } from "./error-handler";
 import { AxiosError } from "axios";
 
@@ -24,7 +24,10 @@ export const queryClient = new QueryClient({
         ApiErrorHandler.handle(error);
       },
       onSuccess: () => {
-        toast.success("Operation completed succesfully");
+        toast({
+          title: "Success",
+          description: "Operation completed successfully",
+        });
       },
     },
   },
