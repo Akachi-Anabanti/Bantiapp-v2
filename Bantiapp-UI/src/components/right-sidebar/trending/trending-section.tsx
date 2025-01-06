@@ -14,6 +14,16 @@ export const TrendingSection = () => {
       topic: "#TypeScript",
       posts: "25.2K",
     },
+    {
+      category: "Politics",
+      topic: "Peter Obi",
+      posts: "25.2K",
+    },
+    {
+      category: "sports",
+      topic: "Maguire",
+      posts: "25.2K",
+    },
   ];
 
   const handleClick = () => {

@@ -1,3 +1,5 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 interface FollowSuggestionProps {
   name: string;
   handle: string;
@@ -12,7 +14,10 @@ export const FollowSuggestion = ({
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <img src={avatar} alt={name} className="w-10 h-10 rounded-full" />
+        <Avatar>
+          <AvatarFallback></AvatarFallback>
+          <AvatarImage src={avatar} className="rounded-full" />
+        </Avatar>
         <div>
           <p className="font-medium">{name}</p>
           <p className="text-sm text-muted-foreground">@{handle}</p>

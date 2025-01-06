@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover } from "@radix-ui/react-popover";
 import { PopoverContent, PopoverTrigger } from "../../ui/popover";
-import { Button } from "../../ui/button";
 
 export default function TrendingMoreButtonPopover() {
   const handleMoreClick = (e: React.MouseEvent) => {

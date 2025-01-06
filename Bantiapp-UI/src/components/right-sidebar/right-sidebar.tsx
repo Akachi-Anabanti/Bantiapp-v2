@@ -1,4 +1,4 @@
-import { FollowSection } from "./follow-section";
+import { FollowSection } from "./follow-suggestion/follow-section";
 import { SearchBar } from "./search-bar";
 import { TrendingSection } from "./trending/trending-section";
 
