@@ -1,4 +1,5 @@
-import { Dot, MoreHorizontal } from "lucide-react";
+import { Dot } from "lucide-react";
+import TrendingMoreButtonPopover from "./trending-more-button-popover";
 
 interface TrendingItemProps {
   category?: string;
@@ -13,20 +14,15 @@ export const TrendingItem = ({
   posts,
   onClick,
 }: TrendingItemProps) => {
-  const handleMoreClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering onClick on parent
-    alert("More clicked");
-  };
-
   return (
     <div
-      className="p-4 hover:bg-muted duration-300 cursor-pointer my-0"
+      className="p-4 hover:bg-muted duration-300 cursor-pointer my-0 pt-1 pb-0"
       onClick={onClick}
       role="button"
       aria-label="Trending item"
     >
-      <div className="">
-        <div className="flex items-center justify-between">
+      <div>
+        <div className="flex items-center justify-between my-0">
           <div className="text-sm text-gray-500 flex items-center space-x-1">
             {category && (
               <>
@@ -37,15 +33,10 @@ export const TrendingItem = ({
 
             <span>Trending</span>
           </div>
-          <button
-            onClick={handleMoreClick}
-            className="text-500 hover:text-gray-700"
-            aria-label="More options"
-          >
-            <MoreHorizontal size={20} />
-          </button>
+
+          <TrendingMoreButtonPopover />
         </div>
-        <div className="flex flex-col items-start my-0">
+        <div className="flex flex-col items-start my-0 mt-0">
           <p className="font-medium text-lg text-900">{topic}</p>
           <p className="text-sm text-gray-500">{posts} posts</p>
         </div>

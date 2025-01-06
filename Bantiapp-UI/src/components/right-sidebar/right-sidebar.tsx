@@ -1,6 +1,6 @@
 import { FollowSection } from "./follow-section";
 import { SearchBar } from "./search-bar";
-import { TrendingSection } from "./trending-section";
+import { TrendingSection } from "./trending/trending-section";
 
 // components/right-sidebar/RightSidebar.tsx
 export const RightSidebar = () => {
