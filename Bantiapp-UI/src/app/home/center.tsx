@@ -1,71 +1,48 @@
-import PostSkeleton from "@/components/skeletons/post";
+import { PostItem } from "@/components/post/post-item";
+import { Post, User } from "@/types/api";
 
-// components/pages/CenterPage.tsx
 export default function CenterPage() {
+  const fixedDate = "2024-12-03T00:00:00Z";
+
+  const testUser: User = {
+    username: "Mike tygress",
+    avatar: "/placeholder/2/2",
+    id: "1",
+    email: "",
+    followersCount: 0,
+    followingCount: 0,
+    createdAt: fixedDate,
+    handle: "mike_tygress",
+  };
+
+  const post: Post = {
+    content: `Test post \n plenty lorem ipsum write up just to fill up the space and see what it looks \n like having a lot of text data on the page. If that is okay then this is fine as well Martini 𓅪
+ reposted your post
+Everybody is now asking why a priest should have a gun.
+Not long ago a church was attacked in Owo and everybody asked why the priest didn't have a gun.
+
+The duality of man.`,
+    author: testUser,
+    createdAt: fixedDate,
+    id: "",
+    likes: 1530,
+    comments: 0,
+    isLiked: false,
+    retweets: 0,
+  };
+
   return (
-    <>
-      {" "}
-      <PostSkeleton />
-      {/* <div className="flex flex-col  min-h-screen">
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 w-full">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="flex-1 rounded-xl bg-muted/50 w-full" />
-        </div>
-      </div>
-      <div className="flex flex-col  min-h-screen">
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 w-full">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="flex-1 rounded-xl bg-muted/50 w-full" />
-        </div>
-      </div>
-      <div className="flex flex-col  min-h-screen">
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 w-full">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="flex-1 rounded-xl bg-muted/50 w-full" />
-        </div>
-      </div>
-      <div className="flex flex-col  min-h-screen">
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 w-full">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="flex-1 rounded-xl bg-muted/50 w-full" />
-        </div>
-      </div>
-      <div className="flex flex-col  min-h-screen">
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 w-full">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="flex-1 rounded-xl bg-muted/50 w-full" />
-        </div>
-      </div>
-      <div className="flex flex-col  min-h-screen">
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 w-full">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-          </div>
-          <div className="flex-1 rounded-xl bg-muted/50 w-full" />
-        </div>
-      </div> */}
-    </>
+    <PostItem
+      id={post.id}
+      content={post.content}
+      post={post}
+      initialMetrics={{
+        likes: post.likes,
+        retweets: post.retweets,
+        replies: post.comments,
+      }}
+      author={post.author}
+      createdAt={new Date(post.createdAt)}
+    />
   );
 }

@@ -32,7 +32,7 @@ export const TrendingSection = () => {
 
   return (
     <Card>
-      <CardHeader className="font-bold text-xl mb-2">
+      <CardHeader className="font-bold text-xl mb-2 flex items-start">
         What's happening
       </CardHeader>
       <CardContent className="p-0">

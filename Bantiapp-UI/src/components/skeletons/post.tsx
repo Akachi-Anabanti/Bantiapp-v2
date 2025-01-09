@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils"; // For combining classes
 
-export default function PostSkeleton({ className }) {
+export default function PostSkeleton() {
   return (
-    <div className={cn("space-y-4 animate-pulse p-4", className)}>
+    <div className={cn("space-y-4 animate-pulse p-4 border-b")}>
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-muted/60" />
         <div className="space-y-2 flex-1">

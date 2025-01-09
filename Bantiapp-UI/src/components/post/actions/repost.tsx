@@ -1,16 +1,25 @@
-import { RepeatIcon } from "lucide-react";
+import { Repeat } from "lucide-react";
+import { useState } from "react";
 
-interface RetweetProps {
-  isRetweeted: boolean;
-  className?: string;
-}
+const RetweetButton = ({ initialCount }: { initialCount: number }) => {
+  const [isRetweeted, setIsRetweeted] = useState(false);
+  const [count, setCount] = useState(initialCount);
 
-export function Retweet({ isRetweeted, className = "" }: RetweetProps) {
+  const handleRetweet = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    setIsRetweeted(!isRetweeted);
+    setCount((prev) => prev + (isRetweeted ? -1 : 1));
+  };
+
   return (
-    <RepeatIcon
-      className={`${className} ${
-        isRetweeted ? "fill-green-500 text-green-500" : ""
+    <button
+      className={`flex items-center gap-2 hover:text-green-500 ${
+        isRetweeted ? "text-green-500" : ""
       }`}
-    />
+      onClick={handleRetweet}
+    >
+      <Repeat size={20} /> {count}
+    </button>
   );
-}
+};
+export default RetweetButton;

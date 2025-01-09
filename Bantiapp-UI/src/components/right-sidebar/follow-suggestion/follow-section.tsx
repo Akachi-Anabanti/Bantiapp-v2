@@ -28,14 +28,16 @@ export const FollowSection = () => {
 
   return (
     <Card>
-      <CardHeader className="font-bold text-xl mb-4">Who to follow</CardHeader>
-      <CardContent className="">
+      <CardHeader className="font-bold text-xl pb-2 flex items-start">
+        Who to follow
+      </CardHeader>
+      <CardContent className="space-y-2">
         {suggestedUsers.map((user, index) => (
-          <FollowSuggestion key={index} {...user} className="" />
+          <FollowSuggestion key={index} {...user} />
         ))}
       </CardContent>
-      <CardFooter className="px-0 pb-0">
-        <Button variant={"link"} className="outline-none text-md text-blue-600">
+      <CardFooter className="pt-2">
+        <Button variant="link" className="text-blue-600 p-0 h-auto">
           Show More
         </Button>
       </CardFooter>

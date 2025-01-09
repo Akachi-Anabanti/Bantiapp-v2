@@ -24,7 +24,7 @@ export const FollowSuggestion = ({
         className
       )}
     >
-      <div className="flex items-center gap-3 min-w-0">
+      <div className="flex items-start  gap-2 min-w-0">
         <Avatar>
           <AvatarImage src={avatar} alt={name} />
           <AvatarFallback>{name[0]}</AvatarFallback>

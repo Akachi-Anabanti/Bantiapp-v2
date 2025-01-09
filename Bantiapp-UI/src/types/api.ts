@@ -24,6 +24,7 @@ export interface User {
   followersCount: number;
   followingCount: number;
   createdAt: string;
+  handle: string;
 }
 
 export interface AuthResponse {
@@ -40,6 +41,7 @@ export interface Post {
   comments: number;
   isLiked: boolean;
   createdAt: string;
+  retweets: number;
 }
 
 export interface Comment {
