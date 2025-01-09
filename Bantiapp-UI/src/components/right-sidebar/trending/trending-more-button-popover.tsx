@@ -1,6 +1,4 @@
-import { MoreHorizontal } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { FrownIcon, MoreHorizontal } from "lucide-react";
 import { Popover } from "@radix-ui/react-popover";
 import { PopoverContent, PopoverTrigger } from "../../ui/popover";
 
@@ -12,6 +10,13 @@ export default function TrendingMoreButtonPopover() {
   const handlePopoverClick = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent popover content clicks from bubbling up
   };
+  const TrendTopicOPtions = [
+    "The associated content is not relevant",
+    "This trend is spam",
+    "Not interested in this",
+    "This trend is a duplicate",
+    "This trend is harmful or spammy",
+  ];
 
   return (
     <Popover>
@@ -25,52 +30,21 @@ export default function TrendingMoreButtonPopover() {
         </button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-80"
+        className="w-full rounded-xl shadow-md shadow-blue-500/50 hover:shadow-blue-600/50"
         align="end"
         alignOffset={0}
         onClick={handlePopoverClick}
       >
         <div className="grid gap-4">
-          <div className="space-y-2">
-            <h4 className="font-medium leading-none">Dimensions</h4>
-            <p className="text-sm text-muted-foreground">
-              Set the dimensions for the layer.
-            </p>
-          </div>
-          <div className="grid gap-2">
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Width</Label>
-              <Input
-                id="width"
-                defaultValue="100%"
-                className="col-span-2 h-8"
-              />
+          {TrendTopicOPtions.map((trend, idx) => (
+            <div
+              key={idx}
+              className="hover:bg-gray-800/25 flex flex-row items-center gap-2 cursor-pointer p-2"
+            >
+              <FrownIcon size={17} />
+              <p className="font-medium">{trend}</p>
             </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxWidth">Max. width</Label>
-              <Input
-                id="maxWidth"
-                defaultValue="300px"
-                className="col-span-2 h-8"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="height">Height</Label>
-              <Input
-                id="height"
-                defaultValue="25px"
-                className="col-span-2 h-8"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxHeight">Max. height</Label>
-              <Input
-                id="maxHeight"
-                defaultValue="none"
-                className="col-span-2 h-8"
-              />
-            </div>
-          </div>
+          ))}
         </div>
       </PopoverContent>
     </Popover>

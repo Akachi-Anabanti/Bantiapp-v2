@@ -18,6 +18,7 @@ export const queryClient = new QueryClient({
       onError: (error) => {
         ApiErrorHandler.handle(error);
       },
+      refetchOnWindowFocus: false,
     },
     mutations: {
       onError: (error) => {

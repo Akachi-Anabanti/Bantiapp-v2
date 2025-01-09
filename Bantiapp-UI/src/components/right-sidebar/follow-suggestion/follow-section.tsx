@@ -19,6 +19,11 @@ export const FollowSection = () => {
       handle: "wade_warren",
       avatar: "/api/placeholder/32/32",
     },
+    {
+      name: "James Buffet",
+      handle: "james_buffet",
+      avatar: "/api/placeholder/32/32",
+    },
   ];
 
   return (
@@ -26,7 +31,7 @@ export const FollowSection = () => {
       <CardHeader className="font-bold text-xl mb-4">Who to follow</CardHeader>
       <CardContent className="">
         {suggestedUsers.map((user, index) => (
-          <FollowSuggestion key={index} {...user} />
+          <FollowSuggestion key={index} {...user} className="" />
         ))}
       </CardContent>
       <CardFooter className="px-0 pb-0">

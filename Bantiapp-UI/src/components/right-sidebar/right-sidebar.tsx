@@ -1,15 +1,19 @@
+import { Separator } from "../ui/separator";
 import { FollowSection } from "./follow-suggestion/follow-section";
+import FooterInfo from "./footer-info";
 import { SearchBar } from "./search-bar";
 import { TrendingSection } from "./trending/trending-section";
 
 // components/right-sidebar/RightSidebar.tsx
 export const RightSidebar = () => {
   return (
-    <div className="sticky top-0 hidden lg:block w-[350px] h-screen pl-8 pr-4">
-      <div className="space-y-4 pt-4 gap-4">
+    <div className="top-0 hidden lg:block w-[370px] h-full">
+      <div className="space-y-4 gap-4">
         <SearchBar />
         <TrendingSection />
         <FollowSection />
+        <Separator />
+        <FooterInfo />
       </div>
     </div>
   );

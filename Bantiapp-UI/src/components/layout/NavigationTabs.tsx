@@ -52,8 +52,8 @@ export const NavigationTabs = () => {
   };
 
   return (
-    <nav
-      className="static top-0 z-10 bg-background border-b w-full"
+    <div
+      className="z-10 bg-background border-b w-full"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
@@ -100,7 +100,7 @@ export const NavigationTabs = () => {
           </button>
         )}
       </div>
-    </nav>
+    </div>
   );
 };
 

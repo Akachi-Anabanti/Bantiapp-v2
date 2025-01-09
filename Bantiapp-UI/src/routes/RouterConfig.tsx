@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react";
 // import { AuthGuard } from "./AuthGuard";
-import { MainLayout } from "@/components/layout/MainLayout";
+// import { MainLayout } from "@/components/layout/MainLayout";
 import PageLoader from "@/components/layout/PageLoader";
+import Layout from "@/components/layout/Layout";
 
 // Lazy load pages
 const pages = {
@@ -72,7 +73,8 @@ export const router = createBrowserRouter([
       // <AuthGuard>
       //   <MainLayout />
       // </AuthGuard>
-      <MainLayout />
+      // <MainLayout />
+      <Layout />
     ),
     children: protectedRoutes,
   },
