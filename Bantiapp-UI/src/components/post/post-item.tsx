@@ -8,6 +8,8 @@ import RetweetButton from "./actions/repost";
 import LikeButton from "./actions/like-post";
 import BookmarkButton from "./actions/boomark";
 import ShareButton from "./actions/share";
+import PostMoreButtonPopover from "./post-more-button-popover";
+import { Button } from "../ui/button";
 
 interface PostItemProps {
   id: string;
@@ -29,6 +31,7 @@ export function PostItem({
   initialMetrics,
   createdAt,
 }: PostItemProps) {
+  const handleMouseEnter = () => {};
   return (
     <article
       className="border-b p-4 hover:bg-muted/50 cursor-pointer transition-colors"
@@ -42,15 +45,24 @@ export function PostItem({
           <AvatarFallback>{author.username[0]}</AvatarFallback>
         </Avatar>
         <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <p className="font-medium">{author.username}</p>
-            <p className="text-muted-foreground">@{author.handle}</p>
-            <span className="text-muted-foreground">·</span>
-            <time className="text-muted-foreground">
-              {formatDistanceToNow(createdAt, { addSuffix: true })}
-            </time>
+          <div
+            className="flex justify-between items-center"
+            onMouseEnter={handleMouseEnter}
+          >
+            <div className="flex items-center gap-1 text-sm">
+              <Button variant={"link"} className="font-medium outline-none p-0">
+                {author.username}
+              </Button>
+              <p className="text-muted-foreground">@{author.handle}</p>
+              <span className="text-muted-foreground">·</span>
+              <time className="text-muted-foreground">
+                {formatDistanceToNow(createdAt)}
+              </time>
+            </div>
+            <PostMoreButtonPopover author={author} />
           </div>
-          <p className="mt-2 mb-3 flex text-start">{content}</p>
+
+          <p className="mb-3 flex text-start">{content}</p>
           <div className="flex justify-between text-muted-foreground max-w-md">
             <ReplyButton count={initialMetrics.replies} />
             <RetweetButton initialCount={initialMetrics.retweets} />
