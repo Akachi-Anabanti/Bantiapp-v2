@@ -17,7 +17,7 @@ export default function Layout() {
 
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0 w-full max-w-full overflow-hidden border-r border-l relative">
-          <nav className="static z-50 bg-white dark:bg-gray-800 shadow-md overflow-x-hidden">
+          <nav className="static z-50 bg-white dark:bg-gray-800 overflow-x-hidden">
             <NavigationTabs />
           </nav>
           <div className="flex-1 overflow-x-hidden">

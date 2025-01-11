@@ -1,7 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 import { formatDistanceToNow } from "date-fns";
-
 import { Post, User } from "@/types/api";
 import ReplyButton from "./actions/reply";
 import RetweetButton from "./actions/repost";
@@ -9,7 +6,9 @@ import LikeButton from "./actions/like-post";
 import BookmarkButton from "./actions/boomark";
 import ShareButton from "./actions/share";
 import PostMoreButtonPopover from "./post-more-button-popover";
-import { Button } from "../ui/button";
+import UserAvatarInfoHoverCard from "../user/user-avatar-info-hover-card";
+import UserNameInfoHoverCard from "../user/user-name-info-hover-card";
+import UserHandleInfoHoverCard from "../user/user-handle-info-hover-card";
 
 interface PostItemProps {
   id: string;
@@ -40,20 +39,15 @@ export function PostItem({
       }}
     >
       <div className="flex gap-3">
-        <Avatar>
-          <AvatarImage src={author.avatar} alt={author.username} />
-          <AvatarFallback>{author.username[0]}</AvatarFallback>
-        </Avatar>
+        <UserAvatarInfoHoverCard author={author} />
         <div className="flex-1">
           <div
             className="flex justify-between items-center"
             onMouseEnter={handleMouseEnter}
           >
             <div className="flex items-center gap-1 text-sm">
-              <Button variant={"link"} className="font-medium outline-none p-0">
-                {author.username}
-              </Button>
-              <p className="text-muted-foreground">@{author.handle}</p>
+              <UserNameInfoHoverCard author={author} />
+              <UserHandleInfoHoverCard author={author} />
               <span className="text-muted-foreground">·</span>
               <time className="text-muted-foreground">
                 {formatDistanceToNow(createdAt)}
