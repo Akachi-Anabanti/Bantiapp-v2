@@ -1,3 +1,4 @@
+import { formatCount } from "@/utils/formatCount";
 import { Heart } from "lucide-react";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ const LikeButton = ({ initialCount }: { initialCount: number }) => {
       onClick={handleLike}
     >
       <Heart size={20} className={`${isLiked ? "fill-red-500" : ""}`} />
-      {count}
+      {formatCount(count)}
     </button>
   );
 };

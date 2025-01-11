@@ -1,9 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CalendarIcon, Users2 } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { HoverCardContent } from "../ui/hover-card";
 import { Button } from "../ui/button";
 import { AvatarGroup } from "../ui/avatar-group";
 import { User } from "@/types/api";
+import { formatCount } from "@/utils/formatCount";
 
 export default function UserInfoHoverCard({ author }: { author: User }) {
   // mutual followers will be gotten from the db
@@ -56,26 +57,27 @@ export default function UserInfoHoverCard({ author }: { author: User }) {
 
         {/* Stats Section */}
         <div className="flex gap-4 text-sm">
-          <div>
-            <span className="font-semibold">{author.followingCount}</span>{" "}
-            <span className="text-muted-foreground">Following</span>
-          </div>
-          <div>
-            <span className="font-semibold">{author.followersCount}| 89</span>{" "}
-            <span className="text-muted-foreground">Followers</span>
-          </div>
+          <Button variant={"link"}>
+            <span className="font-semibold">
+              {formatCount(author.followingCount)}{" "}
+              <span className="text-muted-foreground">Following</span>
+            </span>
+          </Button>
+          <Button variant={"link"}>
+            <span className="font-semibold">
+              {formatCount(author.followersCount)}{" "}
+              <span className="text-muted-foreground">Followers</span>
+            </span>
+          </Button>
         </div>
 
         {/* Mutual Followers Section */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           {mutualFollowers.length > 0 ? (
-            <>
+            <Button variant={"link"}>
               <AvatarGroup avatars={mutualFollowers} maxAvatars={3} size="sm" />
-              <p className="text-xs">
-                Followed by <Users2 className="inline h-3 w-3" /> 45 people you
-                follow
-              </p>
-            </>
+              <p className="text-xs">Followed by 45 people you follow</p>
+            </Button>
           ) : (
             <p className="">Not followed by anyone you're following </p>
           )}

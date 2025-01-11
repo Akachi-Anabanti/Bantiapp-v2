@@ -1,3 +1,4 @@
+import { formatCount } from "@/utils/formatCount";
 import { Repeat } from "lucide-react";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ const RetweetButton = ({ initialCount }: { initialCount: number }) => {
       }`}
       onClick={handleRetweet}
     >
-      <Repeat size={20} /> {count}
+      <Repeat size={20} /> {formatCount(count)}
     </button>
   );
 };

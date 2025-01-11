@@ -1,3 +1,4 @@
+import { PostCreationForm } from "@/components/post/post-creation-form";
 import { PostItem } from "@/components/post/post-item";
 import { Post, User } from "@/types/api";
 
@@ -31,18 +32,35 @@ The duality of man.`,
     retweets: 0,
   };
 
+  interface postDataInterface {
+    content: string;
+    media?: File[];
+    link?: string;
+  }
+  const handlePostCreation = async (data: postDataInterface) => {
+    console.log(data);
+  };
   return (
-    <PostItem
-      id={post.id}
-      content={post.content}
-      post={post}
-      initialMetrics={{
-        likes: post.likes,
-        retweets: post.retweets,
-        replies: post.comments,
-      }}
-      author={post.author}
-      createdAt={new Date(post.createdAt)}
-    />
+    <>
+      <PostCreationForm
+        user={{
+          avatar: "",
+          username: "Jeremy Kettle",
+        }}
+        onSubmit={handlePostCreation}
+      />
+      <PostItem
+        id={post.id}
+        content={post.content}
+        post={post}
+        initialMetrics={{
+          likes: post.likes,
+          retweets: post.retweets,
+          replies: post.comments,
+        }}
+        author={post.author}
+        createdAt={new Date(post.createdAt)}
+      />
+    </>
   );
 }

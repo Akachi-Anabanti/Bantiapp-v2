@@ -2,23 +2,17 @@ import React, { useState, useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  ImageIcon,
-  VideoIcon,
-  FileIcon,
-  MusicIcon,
-  XIcon,
-  Link2Icon,
-} from "lucide-react";
+import { Image, FileIcon, MusicIcon, XIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 
-interface MediaFile {
+export interface MediaFile {
   file: File;
   type: "image" | "video" | "audio" | "gif" | "file";
   preview: string;
 }
 
-interface PostFormProps {
+export interface PostFormProps {
   user: {
     avatar: string;
     username: string;
@@ -45,6 +39,7 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
     return "file";
   };
 
+  // preview creation
   const createFilePreview = (file: File): string => {
     const type = getFileType(file);
     if (type === "image" || type === "gif") {
@@ -53,10 +48,11 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
     return "";
   };
 
+  // handle media selection
   const handleMediaSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || []);
     if (files.length + mediaFiles.length > 4) {
-      alert("Maximum 4 media files allowed");
+      //   alert("Maximum 4 media files allowed");
       return;
     }
 
@@ -69,6 +65,7 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
     setMediaFiles((prev) => [...prev, ...newMediaFiles]);
   };
 
+  // remove attached media
   const removeMedia = (index: number) => {
     setMediaFiles((prev) => {
       const newFiles = [...prev];
@@ -80,6 +77,7 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!content.trim() && !mediaFiles.length && !link) return;
@@ -102,14 +100,19 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
       setContent("");
       setMediaFiles([]);
       setLink("");
-    } catch (error) {
-      console.error("Failed to create post:", error);
+    } catch (e) {
+      toast({
+        title: "Failed to create post",
+        description: e.message,
+        type: "foreground",
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const renderMediaPreview = (media: MediaFile, index: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const renderMediaPreview = (media: MediaFile, _index: number) => {
     switch (media.type) {
       case "image":
       case "gif":
@@ -157,10 +160,12 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
           <Textarea
             placeholder="What's happening?"
             value={content}
-            onChange={(e: {
-              target: { value: React.SetStateAction<string> };
-            }) => setContent(e.target.value)}
-            className="min-h-[100px] resize-none border-none focus-visible:ring-0"
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+              setContent(e.target.value);
+              e.target.style.height = "auto";
+              e.target.style.height = `${e.target.scrollHeight}px`;
+            }}
+            className="min-h-[50px] w-full resize-none border-none focus-visible:ring-0 shadow-none overflow-hidden"
           />
 
           {/* Media Preview */}
@@ -189,20 +194,6 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
             </div>
           )}
 
-          {/* Link Input */}
-          {!mediaFiles.length && (
-            <div className="flex gap-2 items-center">
-              <Link2Icon className="h-4 w-4 text-muted-foreground" />
-              <input
-                type="url"
-                placeholder="Add a link"
-                value={link}
-                onChange={(e) => setLink(e.target.value)}
-                className="flex-1 bg-transparent border-none focus:outline-none text-sm"
-              />
-            </div>
-          )}
-
           <div className="flex justify-between items-center pt-4 border-t">
             <div className="flex gap-2">
               <input
@@ -220,7 +211,7 @@ export function PostCreationForm({ user, onSubmit }: PostFormProps) {
                 onClick={() => fileInputRef.current?.click()}
                 disabled={mediaFiles.length >= 4 || !!link}
               >
-                <ImageIcon className="h-4 w-4" />
+                <Image className="h-4 w-4" />
               </Button>
               <Button
                 type="button"
